@@ -5,9 +5,9 @@ import TopBar from "./components/TopBar";
 import { Container, Card } from "semantic-ui-react";
 import Register from "./components/Register";
 import Unregister from "./components/Unregister";
-import CreateSecret from "./components/CreateSecret";
+import DepositFunds from "./components/DepositFunds";
 import UnlockSecret from "./components/UnlockSecret";
-import ReadSecret from "./components/ReadSecret";
+import GetBudget from "./components/GetBudget";
 import ListPlayers from "./components/ListPlayers";
 import GetBalance from "./components/GetBalance";
 
@@ -68,7 +68,7 @@ class App extends Component {
               <Card.Content>
                 <h4>Deposit Funds</h4>
                 <br />
-                <CreateSecret />
+                <DepositFunds />
               </Card.Content>
             </Card>
 
@@ -76,7 +76,7 @@ class App extends Component {
                   <Card.Content>
                       <h4>View Your budget</h4>
                       <br />
-                      <ReadSecret />
+                      <GetBudget />
                   </Card.Content>
               </Card>
 

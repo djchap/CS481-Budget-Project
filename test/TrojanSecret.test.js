@@ -61,7 +61,7 @@ describe("Trojan Secret Contract", () => {
     }
   });
 
-  it("Alice can create a secret but Bob cannot read it", async () => {
+  it("Alice can create a amount but Bob cannot read it", async () => {
     await trojanSecret.methods.registerTrojan("Alice").send({
       from: accounts[1],
       gas: "1000000"
@@ -82,7 +82,7 @@ describe("Trojan Secret Contract", () => {
     assert(secret == "message is locked");
   });
 
-  it("Bob can unlock and read Alice's secret", async () => {
+  it("Bob can unlock and read Alice's amount", async () => {
     await trojanSecret.methods.registerTrojan("Alice").send({
       from: accounts[1],
       gas: "1000000"

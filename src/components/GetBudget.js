@@ -3,7 +3,7 @@ import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
 import web3 from "../web3";
 import trojanSecret from "../trojanSecret";
 
-export default class ReadSecret extends Component {
+export default class GetBudget extends Component {
   state = {
     modalOpen: false,
     value: "",
@@ -66,7 +66,7 @@ export default class ReadSecret extends Component {
             <Message error header="Oops!" content={this.state.errorMessage} />
             <Button primary type="submit" loading={this.state.loading}>
               <Icon name="check" />
-              Read Secret Message
+              Get amount
             </Button>
             <hr />
             <h2>{this.state.message}</h2>
