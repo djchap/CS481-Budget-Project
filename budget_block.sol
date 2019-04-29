@@ -1,4 +1,4 @@
-pragma solidity ^0.4.21;
+pragma solidity ^0.5.7;
 
 contract Budget {
     
@@ -21,7 +21,7 @@ contract Budget {
     function make_budget() public returns(bool){}
     function prioritize_budget() public returns(bool){}
     function set_due_date() public returns(bool){}
-    function see_progress() public view returns(bool){}
+    function see_progress() public view returns(uint){}
 }
 
 contract MyBudget is Budget {
@@ -32,4 +32,23 @@ contract MyBudget is Budget {
         STATE=budget_state.STARTED;
     }
     
+    function deposit() public payable returns(bool){
+        return true;
+    }
+    
+    function make_budget() public returns(bool){
+        return true;
+    }
+    
+    function prioritize_budget() public returns(bool){
+        return true;
+    }
+    
+    function set_due_date() public returns(bool){
+        return true;
+    }
+    
+    function see_progress() public view returns(uint){
+        return 0;
+    }
 }
