@@ -6,11 +6,15 @@ contract Budget {
     uint256 public start;
     uint256 public end;
     
-    string[] names;
+    struct Account {
+        string name;
+        uint goal;
+        uint balance;
+    }
     
-    mapping(string => uint) values;
-    mapping(string => uint) priorities;
-    
+    mapping(uint => Account) public accts;
+    uint num_accts = 0;
+
     enum budget_state {
         STARTED
     }
@@ -22,6 +26,8 @@ contract Budget {
     function prioritize_budget() public returns(bool){}
     function set_due_date() public returns(bool){}
     function see_progress() public view returns(uint){}
+    
+    event deposited(address user, uint256 amount);
 }
 
 contract MyBudget is Budget {
