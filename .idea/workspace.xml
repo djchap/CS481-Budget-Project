@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2e49b076-0fa0-4a49-a162-83e704562b87" name="Default" comment="modified some of trojan secrets react app for our project">
+    <list default="true" id="2e49b076-0fa0-4a49-a162-83e704562b87" name="Default" comment="refactored file names and modified deposit funds and view budget">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreateSecret.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DepositFunds.js" afterDir="false" />
@@ -50,7 +50,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/ListPlayers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
+            <state relative-caret-position="765">
               <caret line="51" column="14" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -68,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/DepositFunds.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
+            <state relative-caret-position="1095">
               <caret line="73" column="71" selection-start-line="73" selection-start-column="71" selection-end-line="73" selection-end-column="71" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -89,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/GetBudget.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="51" column="51" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
+            <state relative-caret-position="1020">
+              <caret line="71" column="41" lean-forward="true" selection-start-line="71" selection-start-column="41" selection-end-line="71" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -156,14 +156,14 @@
         <option value="$PROJECT_DIR$/src/components/CreateSecret.js" />
         <option value="$PROJECT_DIR$/src/components/ReadSecret.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
-        <option value="$PROJECT_DIR$/src/components/GetBudget.js" />
         <option value="$PROJECT_DIR$/src/components/DepositFunds.js" />
+        <option value="$PROJECT_DIR$/src/components/GetBudget.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1284" />
-    <option name="width" value="1276" />
+    <option name="x" value="1280" />
+    <option name="width" value="1280" />
     <option name="height" value="1410" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -253,7 +253,7 @@
       <workItem from="1552683168217" duration="13060000" />
       <workItem from="1554428099464" duration="218000" />
       <workItem from="1556486856020" duration="2759000" />
-      <workItem from="1556491611988" duration="2131000" />
+      <workItem from="1556491611988" duration="2483000" />
     </task>
     <task id="LOCAL-00001" summary="modified some of trojan secrets react app for our project">
       <created>1556490889226</created>
@@ -266,15 +266,15 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77818000" />
+    <option name="totallyTimeSpent" value="78170000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1284" y="0" width="1276" height="1410" extended-state="0" />
+    <frame x="1280" y="0" width="1280" height="1410" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.19518073" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.19455564" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50281125" side_tool="true" visible="true" weight="0.2769953" />
@@ -320,7 +320,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="modified some of trojan secrets react app for our project" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified some of trojan secrets react app for our project" />
+    <MESSAGE value="refactored file names and modified deposit funds and view budget" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored file names and modified deposit funds and view budget" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ethereum/factory.js" />
@@ -418,13 +419,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/GetBudget.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="51" column="51" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -449,16 +443,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ListPlayers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="51" column="14" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/GetBalance.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -475,11 +459,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/DepositFunds.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
+        <state relative-caret-position="1095">
           <caret line="73" column="71" selection-start-line="73" selection-start-column="71" selection-end-line="73" selection-end-column="71" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ListPlayers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="51" column="14" selection-start-line="51" selection-start-column="14" selection-end-line="51" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/GetBudget.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="71" column="41" lean-forward="true" selection-start-line="71" selection-start-column="41" selection-end-line="71" selection-end-column="41" />
         </state>
       </provider>
     </entry>
