@@ -39,6 +39,25 @@ contract MyBudget is Budget {
     }
     
     function deposit() public payable returns(bool){
+        uint amt = msg.value;
+        // iterate over accounts in priority order
+        for (uint n = 1; n < num_accts; n++) {
+            uint diff = accts[n].goal - accts[n].balance;
+            // add money if account is not full
+            if(diff > 0) {
+                // add remainder of deposited amount
+                if(diff > amt) {
+                    accts[n].balance += amt;
+                    amt = 0;
+                }
+                // add part of deposited amount
+                else {
+                    accts[n].balance += diff;
+                    amt -= diff;
+                }
+            }
+        }
+        emit deposited(msg.sender, msg.value);
         return true;
     }
     
