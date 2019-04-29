@@ -3,11 +3,12 @@ import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
 import web3 from "../web3";
 import trojanSecret from "../trojanSecret";
 
-export default class CreateSecret extends Component {
+export default class DepositFunds extends Component {
     state = {
         modalOpen: false,
         value: "",
-        secret:"",
+        days: "",
+        amount:"",
         message: "",
         errorMessage: "",
         loading: false
@@ -26,7 +27,7 @@ export default class CreateSecret extends Component {
         });
         try {
             const accounts = await web3.eth.getAccounts();
-            await trojanSecret.methods.setSecret(this.state.value, this.state.secret).send({
+            await trojanSecret.methods.setSecret(this.state.value, this.state.amount).send({
                 from: accounts[0]
             });
         } catch (err) {
@@ -53,23 +54,30 @@ export default class CreateSecret extends Component {
                 <Modal.Content>
                     <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
                         <Form.Field>
-                            <label>Account Name</label>
+                            <label>Account Name (enter an existing or new account name)</label>
                             <input
                                 placeholder="Name"
                                 onChange={event => this.setState({ value: event.target.value })}
                             />
                         </Form.Field>
                         <Form.Field>
-                            <label>Your Secret Message</label>
+                            <label>Amount in Eth</label>
                             <input
-                                placeholder="Secret"
-                                onChange={event => this.setState({ secret: event.target.value })}
+                                placeholder="Amount"
+                                onChange={event => this.setState({ amount: event.target.value })}
+                            />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Number of days to hold funds</label>
+                            <input
+                                placeholder="Days"
+                                onChange={event => this.setState({ days: event.target.value })}
                             />
                         </Form.Field>
                         <Message error header="Oops!" content={this.state.errorMessage} />
                         <Button primary type="submit" loading={this.state.loading}>
                             <Icon name="check" />
-                            Create Secret Message
+                            Deposit
                         </Button>
                         <hr />
                         <h2>{this.state.message}</h2>
