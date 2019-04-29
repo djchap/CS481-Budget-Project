@@ -22,12 +22,13 @@ contract Budget {
     budget_state public STATE;
     
     function deposit() public payable returns(bool){}
-    function make_budget() public returns(bool){}
+    function make_budget(string memory, uint, uint) public returns(bool){}
     function prioritize_budget() public returns(bool){}
     function set_due_date() public returns(bool){}
-    function see_progress() public view returns(uint){}
+    function see_progress() public returns(bool){}
     
     event deposited(address user, uint256 amount);
+    event progress(string name, uint goal, uint balance);
 }
 
 contract MyBudget is Budget {
@@ -41,17 +42,17 @@ contract MyBudget is Budget {
     function deposit() public payable returns(bool){
         uint amt = msg.value;
         // iterate over accounts in priority order
-        for (uint n = 1; n < num_accts; n++) {
+        for (uint n = 1; n <= num_accts; n++) {
             uint diff = accts[n].goal - accts[n].balance;
             // add money if account is not full
             if(diff > 0) {
-                // add remainder of deposited amount
                 if(diff > amt) {
+                    // add remainder of deposited amount
                     accts[n].balance += amt;
                     amt = 0;
                 }
-                // add part of deposited amount
                 else {
+                    // add part of deposited amount
                     accts[n].balance += diff;
                     amt -= diff;
                 }
@@ -61,7 +62,13 @@ contract MyBudget is Budget {
         return true;
     }
     
-    function make_budget() public returns(bool){
+    function make_budget(string memory name, uint goal, uint priority) public returns(bool){
+        
+        accts[priority].name = name;
+        accts[priority].goal = goal;
+        accts[priority].balance = 0;
+        num_accts += 1;
+        
         return true;
     }
     
@@ -73,7 +80,12 @@ contract MyBudget is Budget {
         return true;
     }
     
-    function see_progress() public view returns(uint){
-        return 0;
+    function see_progress() public returns(bool){
+        
+        for (uint n = 1; n <= num_accts; n++) {
+            emit progress(accts[n].name, accts[n].goal, accts[n].balance);
+        }
+        
+        return true;
     }
 }
