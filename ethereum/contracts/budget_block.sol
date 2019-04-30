@@ -1,4 +1,5 @@
 pragma solidity ^0.5.7;
+pragma experimental ABIEncoderV2;
 
 contract Budget {
     
@@ -23,9 +24,8 @@ contract Budget {
     
     function deposit() public payable returns(bool){}
     function make_budget(string memory, uint, uint) public returns(bool){}
-    function prioritize_budget() public returns(bool){}
+    function see_progress() public returns(Account[] memory){}
     function set_due_date() public returns(bool){}
-    function see_progress() public returns(bool){}
     
     event deposited(address user, uint256 amount);
     event progress(string name, uint goal, uint balance);
@@ -72,20 +72,17 @@ contract MyBudget is Budget {
         return true;
     }
     
-    function prioritize_budget() public returns(bool){
-        return true;
+    function see_progress() public returns(Account[] memory){
+        Account[] memory acct_info = new Account[](num_accts);
+        
+        for (uint n = 1; n <= num_accts; n++) {
+            acct_info[n-1] = accts[n];
+        }
+        
+        return acct_info;
     }
     
     function set_due_date() public returns(bool){
-        return true;
-    }
-    
-    function see_progress() public returns(bool){
-        
-        for (uint n = 1; n <= num_accts; n++) {
-            emit progress(accts[n].name, accts[n].goal, accts[n].balance);
-        }
-        
         return true;
     }
 }
