@@ -22,13 +22,10 @@ contract Budget {
     
     budget_state public STATE;
     
-    function deposit() public payable returns(bool){}
+    function deposit() public payable returns(string memory){}
     function make_budget(string memory, uint, uint) public returns(bool){}
     function see_progress() public returns(Account[] memory){}
     function set_due_date() public returns(bool){}
-    
-    event deposited(address user, uint256 amount);
-    event progress(string name, uint goal, uint balance);
 }
 
 contract MyBudget is Budget {
@@ -39,8 +36,10 @@ contract MyBudget is Budget {
         STATE=budget_state.STARTED;
     }
     
-    function deposit() public payable returns(bool){
+    function deposit() public payable returns(string memory){
         uint amt = msg.value;
+        string memory goal_reached = "Good work! Keep saving!";
+        
         // iterate over accounts in priority order
         for (uint n = 1; n <= num_accts; n++) {
             uint diff = accts[n].goal - accts[n].balance;
@@ -57,9 +56,18 @@ contract MyBudget is Budget {
                     amt -= diff;
                 }
             }
+            // transfer remainder of deposit if all goals are met
+            if (n == num_accts) {
+                diff = accts[n].goal - accts[n].balance;
+                if (diff == 0) {
+                    if (amt > 0) {
+                        msg.sender.transfer(amt);
+                        goal_reached = "You've reached all your savings goals!";
+                    }
+                }
+            }
         }
-        emit deposited(msg.sender, msg.value);
-        return true;
+        return goal_reached;
     }
     
     function make_budget(string memory name, uint goal, uint priority) public returns(bool){
