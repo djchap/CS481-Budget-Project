@@ -1,4 +1,5 @@
 pragma solidity ^0.5.7;
+pragma experimental ABIEncoderV2;
 
 contract Budget {
     
@@ -21,13 +22,10 @@ contract Budget {
     
     budget_state public STATE;
     
-    function deposit() public payable returns(bool){}
-    function make_budget() public returns(bool){}
-    function prioritize_budget() public returns(bool){}
+    function deposit() public payable returns(string memory){}
+    function make_budget(string memory, uint, uint) public returns(bool){}
+    function see_progress() public returns(Account[] memory){}
     function set_due_date() public returns(bool){}
-    function see_progress() public view returns(uint){}
-    
-    event deposited(address user, uint256 amount);
 }
 
 contract MyBudget is Budget {
@@ -38,42 +36,61 @@ contract MyBudget is Budget {
         STATE=budget_state.STARTED;
     }
     
-    function deposit() public payable returns(bool){
+    function deposit() public payable returns(string memory){
         uint amt = msg.value;
+        string memory goal_reached = "Good work! Keep saving!";
+        
         // iterate over accounts in priority order
-        for (uint n = 1; n < num_accts; n++) {
+        for (uint n = 1; n <= num_accts; n++) {
             uint diff = accts[n].goal - accts[n].balance;
             // add money if account is not full
             if(diff > 0) {
-                // add remainder of deposited amount
                 if(diff > amt) {
+                    // add remainder of deposited amount
                     accts[n].balance += amt;
                     amt = 0;
                 }
-                // add part of deposited amount
                 else {
+                    // add part of deposited amount
                     accts[n].balance += diff;
                     amt -= diff;
                 }
             }
+            // transfer remainder of deposit if all goals are met
+            if (n == num_accts) {
+                diff = accts[n].goal - accts[n].balance;
+                if (diff == 0) {
+                    if (amt > 0) {
+                        msg.sender.transfer(amt);
+                        goal_reached = "You've reached all your savings goals!";
+                    }
+                }
+            }
         }
-        emit deposited(msg.sender, msg.value);
+        return goal_reached;
+    }
+    
+    function make_budget(string memory name, uint goal, uint priority) public returns(bool){
+        
+        accts[priority].name = name;
+        accts[priority].goal = goal;
+        accts[priority].balance = 0;
+        num_accts += 1;
+        
         return true;
     }
     
-    function make_budget() public returns(bool){
-        return true;
-    }
-    
-    function prioritize_budget() public returns(bool){
-        return true;
+    function see_progress() public returns(Account[] memory){
+        Account[] memory acct_info = new Account[](num_accts);
+        
+        for (uint n = 1; n <= num_accts; n++) {
+            acct_info[n-1] = accts[n];
+        }
+        
+        return acct_info;
     }
     
     function set_due_date() public returns(bool){
         return true;
-    }
-    
-    function see_progress() public view returns(uint){
-        return 0;
     }
 }
