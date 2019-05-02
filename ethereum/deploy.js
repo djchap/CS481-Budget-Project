@@ -5,7 +5,7 @@ const Web3 = require("web3");
 
 const compiledTrojanSecret = require("./build/TrojanSecret.json");
 console.log(compiledTrojanSecret.interface);
-console.log("Copy this ABI into the ABI json variable in file trojanSecret.js");
+console.log("Copy this ABI into the ABI json variable in file budgetBlock.js");
 
 
 const provider = new HDWalletProvider(
@@ -28,7 +28,7 @@ const deploy = async () => {
     .send({ gas: "2000000", from: accounts[0] });
 
   console.log("Contract deployed to rinkeby at", result.options.address);
-  console.log("Copy this contract address into the address variable in file trojanSecret.js");
+  console.log("Copy this contract address into the address variable in file budgetBlock.js");
 };
 
 deploy();
