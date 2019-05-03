@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import web3 from "./web3";
-import trojanSecret from "./budgetBlock";
+import budgetBlock from "./budgetBlock";
 import TopBar from "./components/TopBar";
 import { Container, Card } from "semantic-ui-react";
 import Register from "./components/Register";
-import Unregister from "./components/Withdraw";
+import Withdraw from "./components/Withdraw";
 import DepositFunds from "./components/DepositFunds";
-import UnlockSecret from "./components/UnlockSecret";
 import ViewBudget from "./components/ViewBudget";
-import ListPlayers from "./components/CreateBudget";
-import GetBalance from "./components/GetBalance";
+
 
 class App extends Component {
   state = {
@@ -24,11 +22,6 @@ class App extends Component {
       message: "Waiting for blockchain transaction to complete..."
     });
 
-    await trojanSecret.methods.registerTrojan(this.state.value).send({
-      from: accounts[0]
-    });
-
-    this.setState({ message: "you have been registered as a new Trojan!" });
   };
 
   render() {
@@ -50,7 +43,7 @@ class App extends Component {
             <Card color="blue" header="Register to Play">
               <Card.Content>
                 <h4>
-                  Create an account to get started.
+                  Create A New Budget Line
                 </h4>
                 <Register />
               </Card.Content>
@@ -60,7 +53,7 @@ class App extends Component {
               <Card.Content>
                 <h4>Withdraw from Holdings</h4>
                 <br />
-                <Unregister />
+                <Withdraw />
               </Card.Content>
             </Card>
 

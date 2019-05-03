@@ -1,6 +1,6 @@
 import web3 from "./web3";
 
-const address = "0x539d1a82d9ff46c75c38c3321416b15ef40c9fb3";
+const address = "0x61374308b47e0ec90f161aec1907a8326b32ecb6";
 
 const abi = [
     {
@@ -61,7 +61,7 @@ const abi = [
     {
         "constant": false,
         "inputs": [],
-        "name": "set_due_date",
+        "name": "collect_savings",
         "outputs": [
             {
                 "name": "",

@@ -96,7 +96,7 @@ export default class Register extends Component {
             <Message error header="Oops!" content={this.state.errorMessage} />
             <Button primary type="submit" loading={this.state.loading}>
               <Icon name="check" />
-              Create Account
+              Create Budget Line
             </Button>
             <hr />
             <h2>{this.state.message}</h2>

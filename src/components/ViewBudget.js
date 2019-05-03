@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
 import web3 from "../web3";
-import trojanSecret from "../budgetBlock";
+import budgetBlock from "../budgetBlock";
 
 export default class ViewBudget extends Component {
   state = {
@@ -26,7 +26,7 @@ export default class ViewBudget extends Component {
     });
     try {
       const accounts = await web3.eth.getAccounts();
-      newMessage = await trojanSecret.methods.getSecret(this.state.value).call({
+      newMessage = await budgetBlock.methods.see_progress().call({
         from: accounts[0]
       });
     } catch (err) {
@@ -52,21 +52,11 @@ export default class ViewBudget extends Component {
         <Header icon="browser" content="View Budget" />
         <Modal.Content>
           <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
-            <Form.Field>
-              <label>Account Name</label>
-              <input
-                placeholder="Name"
-                onChange={event =>
-                  this.setState({
-                    value: event.target.value
-                  })
-                }
-              />
-            </Form.Field>
+
             <Message error header="Oops!" content={this.state.errorMessage} />
             <Button primary type="submit" loading={this.state.loading}>
               <Icon name="check" />
-              Get amount
+              See Budgets
             </Button>
             <hr />
             <h2>{this.state.message}</h2>
