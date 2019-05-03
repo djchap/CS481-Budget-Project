@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
 import web3 from "../web3";
-import trojanSecret from "../budgetBlock";
+import budgetBlock from "../budgetBlock";
 
 export default class Register extends Component {
     state = {
@@ -18,6 +18,7 @@ export default class Register extends Component {
 
     onSubmit = async event => {
         event.preventDefault();
+        var newMessage = "";
         this.setState({
             loading: true,
             errorMessage: "",
@@ -25,7 +26,7 @@ export default class Register extends Component {
         });
         try {
             const accounts = await web3.eth.getAccounts();
-            await trojanSecret.methods.unregisterTrojan(this.state.value).send({
+            newMessage = await budgetBlock.methods.collect_savings().send({
                 from: accounts[0]
             });
         } catch (err) {
@@ -33,7 +34,7 @@ export default class Register extends Component {
         }
         this.setState({
             loading: false,
-            message: "Your Trojan account has been deleted"
+            message: newMessage
         });
     };
 
@@ -42,26 +43,24 @@ export default class Register extends Component {
             <Modal
                 trigger={
                     <Button color="red" onClick={this.handleOpen}>
-                        Delete Account
+                        Withdraw Funds
                     </Button>
                 }
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
             >
-                <Header icon="browser" content="Trojan Account Deletion" />
+                <Header icon="browser" content="Withdraw" />
                 <Modal.Content>
                     <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
-                        <Form.Field>
-                            <label>Account Name</label>
-                            <input
-                                placeholder="Name"
-                                onChange={event => this.setState({ value: event.target.value })}
-                            />
-                        </Form.Field>
+                        <h2>
+                            Funds can only been withdrawn once this contract has been active for 30 days
+                        </h2>
+                        <br/>
+
                         <Message error header="Oops!" content={this.state.errorMessage} />
                         <Button primary type="submit" loading={this.state.loading}>
                             <Icon name="check" />
-                            Delete Account
+                            Withdraw Funds
                         </Button>
                         <hr />
                         <h2>{this.state.message}</h2>

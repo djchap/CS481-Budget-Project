@@ -3,7 +3,7 @@ import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
 import web3 from "../web3";
 import trojanSecret from "../budgetBlock";
 
-export default class GetBudget extends Component {
+export default class ViewBudget extends Component {
   state = {
     modalOpen: false,
     value: "",

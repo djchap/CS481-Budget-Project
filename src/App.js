@@ -4,10 +4,10 @@ import trojanSecret from "./budgetBlock";
 import TopBar from "./components/TopBar";
 import { Container, Card } from "semantic-ui-react";
 import Register from "./components/Register";
-import Unregister from "./components/Unregister";
+import Unregister from "./components/Withdraw";
 import DepositFunds from "./components/DepositFunds";
 import UnlockSecret from "./components/UnlockSecret";
-import GetBudget from "./components/GetBudget";
+import ViewBudget from "./components/ViewBudget";
 import ListPlayers from "./components/CreateBudget";
 import GetBalance from "./components/GetBalance";
 
@@ -58,7 +58,7 @@ class App extends Component {
 
             <Card color="red" header="Close your account">
               <Card.Content>
-                <h4>We will surely miss you!</h4>
+                <h4>Withdraw from Holdings</h4>
                 <br />
                 <Unregister />
               </Card.Content>
@@ -76,7 +76,7 @@ class App extends Component {
                   <Card.Content>
                       <h4>View Your budget</h4>
                       <br />
-                      <GetBudget />
+                      <ViewBudget />
                   </Card.Content>
               </Card>
 
