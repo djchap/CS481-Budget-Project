@@ -3,7 +3,7 @@ pragma experimental ABIEncoderV2;
 
 contract Budget {
     
-    address internal savings;
+    address internal budgeter;
     uint256 public start;
     uint256 public end;
     
@@ -22,15 +22,21 @@ contract Budget {
     
     budget_state public STATE;
     
+    modifier only_budgeter(){
+        require(msg.sender == budgeter);
+        _;
+    }
+    
     function deposit() public payable returns(string memory){}
     function make_budget(string memory, uint, uint) public returns(bool){}
     function see_progress() public returns(Account[] memory){}
-    function set_due_date() public returns(bool){}
+    function collect_savings() public returns(bool){}
 }
 
 contract MyBudget is Budget {
     
     constructor () public {
+        budgeter = msg.sender;
         start = now;
         end = start + 30 days;
         STATE=budget_state.STARTED;
@@ -38,7 +44,14 @@ contract MyBudget is Budget {
     
     function deposit() public payable returns(string memory){
         uint amt = msg.value;
-        string memory goal_reached = "Good work! Keep saving!";
+        string memory deposit_response = "Good work! Keep saving!";
+        
+        // don't accept payments until budgets are created
+        if (num_accts == 0) {
+            msg.sender.transfer(amt);
+            deposit_response = "Please make a budget before depositing money.";
+            return deposit_response;
+        }
         
         // iterate over accounts in priority order
         for (uint n = 1; n <= num_accts; n++) {
@@ -62,15 +75,15 @@ contract MyBudget is Budget {
                 if (diff == 0) {
                     if (amt > 0) {
                         msg.sender.transfer(amt);
-                        goal_reached = "You've reached all your savings goals!";
+                        deposit_response = "You've reached all your savings goals!";
                     }
                 }
             }
         }
-        return goal_reached;
+        return deposit_response;
     }
     
-    function make_budget(string memory name, uint goal, uint priority) public returns(bool){
+    function make_budget(string memory name, uint goal, uint priority) public only_budgeter returns(bool){
         
         accts[priority].name = name;
         accts[priority].goal = goal;
@@ -90,7 +103,10 @@ contract MyBudget is Budget {
         return acct_info;
     }
     
-    function set_due_date() public returns(bool){
+    function collect_savings() public only_budgeter returns(bool) {
+        require(now >= end, "You should wait to collect your savings until your bills are due.");
+        
+        selfdestruct(msg.sender);
         return true;
     }
 }
