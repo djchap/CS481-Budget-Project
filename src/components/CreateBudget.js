@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Header, Icon, Modal, Form, Message } from "semantic-ui-react";
 import web3 from "../web3";
-import trojanSecret from "../trojanSecret";
+import budgetBlock from "../budgetBlock";
 
 function PlayerList(props) {
   const numbers = props.numbers;
@@ -23,12 +23,12 @@ export default class ListPlayers extends Component {
 
   handleOpen = async () => {
     this.setState({ modalOpen: true });
-      const numPlayers = await trojanSecret.methods.memberCount().call();
+      const numPlayers = await budgetBlock.methods.memberCount().call();
       this.setState({ numPlayers });
       var i;
       const players = [10];
       for(i = 0; i <= 10;i++){
-        players[i] = await trojanSecret.methods.getListOfPlayers(i).call();
+        players[i] = await budgetBlock.methods.getListOfPlayers(i).call();
       }
       this.setState({players});
 

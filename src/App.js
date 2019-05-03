@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import web3 from "./web3";
-import trojanSecret from "./trojanSecret";
+import trojanSecret from "./budgetBlock";
 import TopBar from "./components/TopBar";
 import { Container, Card } from "semantic-ui-react";
 import Register from "./components/Register";
@@ -8,7 +8,7 @@ import Unregister from "./components/Unregister";
 import DepositFunds from "./components/DepositFunds";
 import UnlockSecret from "./components/UnlockSecret";
 import GetBudget from "./components/GetBudget";
-import ListPlayers from "./components/ListPlayers";
+import ListPlayers from "./components/CreateBudget";
 import GetBalance from "./components/GetBalance";
 
 class App extends Component {
